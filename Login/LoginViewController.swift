@@ -18,18 +18,46 @@ class LoginViewController: UIViewController {
     }
 
     // TODO: instantiate the views needed for your project
+    var headerLabel: UILabel!
+    var userText: UITextField!
+    var passwordText: UITextField!
+    var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundColor
         
         // TODO: Add your views either as subviews of `view` or subviews of each other using `addSubview`
+        headerLabel = UILabel()
+        headerLabel.text = "JC's Login Screen"
+        headerLabel.textColor = UIColor.gray
+        headerLabel.textAlignment = .center
+        headerLabel.font = UIFont(name: "Avenir", size: 22)
         
+        userText = UITextField()
+        userText.placeholder = "Your berkeley.edu email here"
+        
+        passwordText = UITextField()
+        passwordText.placeholder = "Your password here"
+        
+        loginButton = UIButton()
+        loginButton.setTitle("Login", for: .normal)
+        loginButton.titleLabel?.textAlignment = .center
+        loginButton.backgroundColor = Constants.backgroundColor
+        loginButton.addTarget(self, action: #selector(doLogin), for: .touchUpInside)
+        
+        let loginView = UIView()
+        loginView.backgroundColor = UIColor.white
+        loginView.addSubview(userText)
+        loginView.addSubview(passwordText)
+        loginView.addSubview(loginButton)
         // TODO: layout your views using frames or AutoLayout
     }
     
     // TODO: create an IBAction for your login button
-    
+    @IBAction func doLogin(sender: UIButton) {
+        authenticateUser(username: userText.text, password: passwordText.text)
+    }
     
     
     
