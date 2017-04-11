@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
         headerLabel.textColor = UIColor.white
         headerLabel.textAlignment = .center
         headerLabel.font = UIFont(name: "Helvetica", size: 50)
+        headerLabel.numberOfLines = 2
         
         userText = UITextField()
         userText.placeholder = "Your berkeley.edu email here"
@@ -44,6 +45,7 @@ class LoginViewController: UIViewController {
         loginButton.setTitle("Login", for: .normal)
         loginButton.titleLabel?.textAlignment = .center
         loginButton.backgroundColor = UIColor.darkGray
+        loginButton.layer.cornerRadius = 10
         loginButton.addTarget(self, action: #selector(doLogin), for: .touchUpInside)
         
         let loginView = UIView()
@@ -69,22 +71,24 @@ class LoginViewController: UIViewController {
             
             headerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            
-//            loginButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -10),
-//            loginButton.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 10),
-//            loginButton.leftAnchor.constraint(equalTo: loginView.leftAnchor, constant: 10),
-//            loginButton.rightAnchor.constraint(equalTo: loginView.rightAnchor, constant: -10),
-//            loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
+            headerLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             
             userText.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 10),
             userText.leftAnchor.constraint(equalTo: loginView.leftAnchor, constant: 10),
             userText.rightAnchor.constraint(equalTo: loginView.rightAnchor, constant: -10),
             userText.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
             
-            passwordText.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 10),
+            loginButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -10),
+            loginButton.heightAnchor.constraint(equalTo: userText.heightAnchor),
+            loginButton.leftAnchor.constraint(equalTo: loginView.leftAnchor, constant: 10),
+            loginButton.rightAnchor.constraint(equalTo: loginView.rightAnchor, constant: -10),
+            loginButton.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
+            
+            passwordText.heightAnchor.constraint(equalTo: userText.heightAnchor),
             passwordText.leftAnchor.constraint(equalTo: loginView.leftAnchor, constant: 10),
             passwordText.rightAnchor.constraint(equalTo: loginView.rightAnchor, constant: -10),
-            passwordText.centerXAnchor.constraint(equalTo: loginView.centerXAnchor)
+            passwordText.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
+            passwordText.centerYAnchor.constraint(equalTo: loginView.centerYAnchor)
         ]
         NSLayoutConstraint.activate(batchConstraints)
     }
