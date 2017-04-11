@@ -30,9 +30,9 @@ class LoginViewController: UIViewController {
         // TODO: Add your views either as subviews of `view` or subviews of each other using `addSubview`
         headerLabel = UILabel()
         headerLabel.text = "JC's Login Screen"
-        headerLabel.textColor = UIColor.gray
+        headerLabel.textColor = UIColor.white
         headerLabel.textAlignment = .center
-        headerLabel.font = UIFont(name: "Avenir", size: 22)
+        headerLabel.font = UIFont(name: "Elsa", size: 40)
         
         userText = UITextField()
         userText.placeholder = "Your berkeley.edu email here"
@@ -47,11 +47,30 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self, action: #selector(doLogin), for: .touchUpInside)
         
         let loginView = UIView()
-        loginView.backgroundColor = UIColor.white
+        loginView.backgroundColor = UIColor.darkGray
         loginView.addSubview(userText)
         loginView.addSubview(passwordText)
         loginView.addSubview(loginButton)
+        view.addSubview(loginView)
+        view.addSubview(headerLabel)
+        
         // TODO: layout your views using frames or AutoLayout
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        loginView.translatesAutoresizingMaskIntoConstraints = false
+        userText.translatesAutoresizingMaskIntoConstraints = false
+        passwordText.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let batchConstraints = [
+            loginView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loginView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
+            loginView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            
+            headerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            headerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 100)
+        ]
+        NSLayoutConstraint.activate(batchConstraints)
     }
     
     // TODO: create an IBAction for your login button
